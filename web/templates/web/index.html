@@ -1,0 +1,29 @@
+{% extends "base_menu.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="backgroundxx">
+    <h1>Index</h1>
+Start
+
+<script src="{% static 'js/geo.js' %}"></script>
+<script>
+    function resultfunc(lat, long) {
+        var latitude = lat;
+        var longitude = long;
+        
+        console.log("lat, long: " + lat + " " + long);
+    }
+    findLocation(resultfunc);
+</script>
+</div>
+
+
+{% endblock %}
+
+{% block script %}
+<script>
+    $("#menu_index").addClass("active");
+</script>
+{% endblock %}

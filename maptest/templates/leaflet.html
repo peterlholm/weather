@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <style>
+      html, body {
+        height: 100%;
+        padding: 0;
+        margin: 0;
+      }
+      #map {
+        /* configure the size of the map */
+        width: 90%;
+        height: 90%;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Filename {{ filename }}</h2>
+    <div id="map"></div>
+    <script>
+        const leaflet=window.leaflet;
+        const debug = 0;
+        var mylon=12.476;
+        var mylat=55.7271;
+            // initialize Leaflet center
+            //var map = L.map('map').setView({lon: mylon, lat: mylat}, 15);
+
+        // punkter
+        var gyngemosen = L.marker({lon: 12.476332, lat: 55.725269 }, {'title': 'halo'}).bindPopup('Gyngemosen');
+        var tennisKarsten = L.marker({lon: 12.496095, lat: 55.766195}).bindPopup('Tennis');
+
+        var steder = L.layerGroup([gyngemosen, tennisKarsten])
+
+        // add the OpenStreetMap tiles
+        var osm=L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          maxZoom: 19,
+          attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
+        }); // .addTo(map);
+
+        var osmHOT=L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+          maxZoom: 19,
+          attribution: '© OpenStreetMap contributors, Tiles style by Humanitarian OpenStreetMap Team hosted by OpenStreetMap France'
+        });
+
+        var map=L.map('map', {
+            center: [mylat, mylon],
+            zoom: 10,
+            layers: [osm, steder]
+            });
+
+        var baseMaps= {
+          "OpenStreetMap": osm,
+          "OpenStreetMap.HOT": osmHOT
+            };
+
+        var overlayMaps= {
+          "Cities": steder
+            };
+
+        var layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
+
+        // show the scale bar on the lower left corner
+        L.control.scale({imperial: false, metric: true}).addTo(map);
+
+        // show a marker on the map
+        // gyngemosen = L.marker({lon: 12.476, lat: 55.7271 }).bindPopup('Gyngemosen').addTo(map);
+        // tennis = L.marker({lon: 12.496103242316318, lat: 55.76627807263536}).bindPopup('Tennis').addTo(map);
+        var corner_ne = [60.0, 3.0];
+        var corner_nw = [59.82770842, 20.7351401748];
+        var corner_se = [52.29427206, 4.3790827005];
+        var corner_sw = [52.29427206, 18.89328087];
+
+        var vejrbound = L.latLngBounds([corner_ne, corner_sw]);
+        var vejrbound = L.latLngBounds([[59.9, 18.89328087], corner_se]);
+        if (debug) {
+          L.rectangle(vejrbound, {color: "green", weight: 1}).addTo(map);
+        }
+        //var vejrbound = L.latLngBounds([corner_nw, corner_se]);
+        var filename = "{{filename}}";
+        var vejroverlay = L.imageOverlay(filename, vejrbound, {
+          opacity: 0.7,
+          errorOverlayUrl: "error",
+          alt: 'alttekst',
+          interactive: true,
+          zIndex: 10,
+        }).addTo(map);
+        //L.rectangle(vejrbound).addTo(map);
+        //L.rectangle(L.latLngBounds([corner_ne, corner_sw]), {color: "#ff7800", weight: 1}).addTo(map);
+        //L.rectangle(L.latLngBounds([corner_nw, corner_se]), {color: "#00ff00", weight: 1}).addTo(map);
+        if (debug) {
+          var latlngs = [corner_ne, corner_nw, corner_sw, corner_se];
+          var polygon = L.polygon(latlngs, {color: 'red'}).addTo(map);
+        }
+        //map.fitBounds(vejrbound);
+    </script>
+  </body>
+</html>
+
+Further links

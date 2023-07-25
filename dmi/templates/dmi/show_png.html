@@ -1,0 +1,42 @@
+{% extends "base_menu.html" %}
+{% load static %}
+
+{% block content %}
+<style>
+.picture_box {
+    float: left;
+    border:  1px solid black;
+    font-size: 10px;
+}
+.pic_set {
+    xfloat: left;
+    height: 300px;
+    xborder:  2px solid red;
+    font-size: 10px;
+}
+
+</style>
+
+<div class="container">
+    <h1>Pictures<h1>
+            
+    {% for picset in pictures %}
+    <div class="pic_set">
+        {% for pic in picset %}
+            <div class="picture_box">
+                <img src="{{ pic }}" alt="{{ pic }}" class="" width="300"><br>
+                {{ pic }}
+            </div>
+        {% endfor %}
+        <br>
+        
+    </div>
+    {% endfor %}
+ 
+</div>
+
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}

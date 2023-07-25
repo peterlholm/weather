@@ -1,0 +1,18 @@
+{% extends "base_menu.html" %}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+<br>
+<h3>Indstillinger</h3>
+<br>
+{% crispy form %}
+
+{% endblock %}
+
+{% block script %}
+<script>
+    $("#menu_config").addClass("active");
+</script>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page %}
+<div class="container">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">
+        <img src="{% static 'img/cloud_ico.png' %}" alt="vejr logo" width="30" height="24" class="d-inline-block align-text-top">
+       Vejret
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">y
+        <span class="navbar-toggler-icon">x</span>
+      </button>
+      <!-- menu items -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 xnav-tabs xnav-justified">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" id="menu_index" href="{% url 'index' %}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="menu_radar" href="{% url 'radarpicture' %}">Radar Picture</a>
+          </li>
+          <li class=" nav-item">
+            <a class="nav-link" id="menu_dmi" href="{% url 'dmi_index' %}">DMI index</a>
+          </li>
+          <li class=" nav-item">
+            <a class="nav-link" id="menu_maptest" href="{% url 'maptest_index' %}">Maptest index</a>
+          </li>
+        </ul>
+        <span class="navbar-text">test text</span>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Lokation" aria-label="Lokation">
+          <button class="btn btn-outline-success" type="submit">Find</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  {% block content %}
+  {% endblock %}
+
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+  $("#menu_start").addClass("active");
+</script>
+{% endblock %}

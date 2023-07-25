@@ -1,0 +1,10 @@
+pylint
+pylint-django
+requests
+django
+numpy
+pillow
+piexif
+h5py
+
+

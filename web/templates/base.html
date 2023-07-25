@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="da">
+
+<head>
+  {% load static %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="description" content="weather app, Author: Peter Holm"> 
+  <link rel="icon" href="{% static 'img/cloud.png' %}" type="image/png" sizes="120x120">
+  <link rel="manifest" href="{% static 'manifest.json' %}">
+  <meta name="theme-color" content="#ee0000" />
+  {% comment %} 
+  <link rel="icon" href="{% static 'pic/badbold_192.png' %}" type="image/png" sizes="192x192">
+  <link rel="icon" href="{% static 'pic/bad512.png' %}" type="image/png" sizes="512x512"> 
+  <link rel="apple-touch-icon" href="{% static 'pic/bad192a.png' %}" type="image/png" sizes="192x192">
+  <link rel="icon" type="image/x-icon" href="/static/pic/badbold_192.ico">
+  {% endcomment %}
+  <link href="http://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+  <link href="{% static 'site.css' %}" rel="stylesheet">
+  <title>Vejr</title>
+</head>
+
+<body>
+    {% block page %}
+    <!-- page here -->
+    {%endblock %}
+
+  <script src="http://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+    crossorigin="anonymous"></script>
+  <script src="http://code.jquery.com/jquery-3.6.1.slim.min.js"
+    integrity="sha256-w8CvhFs7iHNVUtnSP0YKEg00p9Ih13rlL9zGqvLdePA=" crossorigin="anonymous"></script>
+  {% block script %}
+  {% endblock %}
+</body>
+
+</html>

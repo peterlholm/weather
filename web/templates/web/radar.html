@@ -1,0 +1,44 @@
+{% extends "base_menu.html" %}
+{% load static %}
+
+{% block content %}
+<style>
+    .background {
+        width: 1291px;
+        height: 672px;
+        xbackground-color: yellow;
+        background-image: url("{% static 'img/dk.png' %}");
+        border: yellow 1px solid;
+    }
+    .radar {
+        z-index: 100;
+        opacity: 0.5;
+    }
+    .img {
+        position: absolute;
+        left: 0;
+        top: 50;
+        xborder: green 1px solid;
+    }
+</style>
+
+<h3>{{ title }}</h3>
+<div>
+    <h2>{{radar_img}}</h2>
+    <div class="backgroundx">
+        <div class="rxxadar">
+            <img src="{{ background_img }}" alt="radar" class="img" width="661" height="576">
+
+            <img src="{{ radar_img }}" alt="radar" class="img radar" width="661" height="576">
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block script %}
+<script>
+    $("#menu_start").addClass("active");
+</script>
+{% endblock %}
